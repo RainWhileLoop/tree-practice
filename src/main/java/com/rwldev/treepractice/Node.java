@@ -1,5 +1,8 @@
 package com.rwldev.treepractice;
 
+import java.util.LinkedList;
+import java.util.List;
+
 /**
  *
  * @author rainw
@@ -7,7 +10,7 @@ package com.rwldev.treepractice;
 public class Node<T> {
 
     private T data;
-    private Node<T> leftNode, rightNode;
+    private List<Node<T>> children;
 
     public Node(T data) {
         this.data = data;
@@ -21,20 +24,15 @@ public class Node<T> {
         this.data = data;
     }
 
-    public Node<T> getLeftNode() {
-        return leftNode;
+    public void addChild(T childData) {
+        if (this.children == null) {
+            this.children = new LinkedList<>();
+        }
+        this.children.add(new Node<>(childData));
     }
 
-    public void setLeftNode(Node<T> leftNode) {
-        this.leftNode = leftNode;
-    }
-
-    public Node<T> getRightNode() {
-        return rightNode;
-    }
-
-    public void setRightNode(Node<T> rightNode) {
-        this.rightNode = rightNode;
+    public Node<T> childAt(int index) {
+        return this.children.get(index);
     }
 
 }
